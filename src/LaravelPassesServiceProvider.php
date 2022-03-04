@@ -2,24 +2,38 @@
 
 namespace Chiiya\LaravelPasses;
 
+use Chiiya\LaravelPasses\Google\GoogleClient;
+use Chiiya\Passes\Apple\PassFactory;
+use Chiiya\Passes\Google\Http\ClientInterface;
+use Illuminate\Support\Facades\Http;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Chiiya\LaravelPasses\Commands\LaravelPassesCommand;
 
 class LaravelPassesServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('laravel-passes')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-passes_table')
-            ->hasCommand(LaravelPassesCommand::class);
+            ->hasConfigFile();
+    }
+
+    public function packageRegistered(): void
+    {
+        $this->app->bind(ClientInterface::class, GoogleClient::class);
+        $this->app->bind(PassFactory::class, function () {
+            return new PassFactory([
+                'temp_dir' => config('passes.apple.temp_dir'),
+                'output' => config('passes.apple.temp_dir'),
+                'certificate' => config('passes.apple.certificate'),
+                'password' => config('passes.apple.password'),
+                'wwdr' => config('passes.apple.wwdr'),
+            ]);
+        });
+    }
+
+    public function bootingPackage(): void
+    {
+        Http::macro('isFaking', fn () => $this->recording);
     }
 }

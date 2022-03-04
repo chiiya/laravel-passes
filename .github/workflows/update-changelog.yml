@@ -1,18 +1,15 @@
-name: "Update Changelog"
-
+name: update-changelog
 on:
   release:
     types: [released]
-
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          ref: main
+          ref: master
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
@@ -23,6 +20,6 @@ jobs:
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          branch: main
+          branch: master
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md

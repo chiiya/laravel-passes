@@ -1,10 +1,15 @@
 {
     "name": "chiiya/laravel-passes",
-    "description": "This is my package laravel-passes",
+    "description": "Laravel library for creating iOS and Android Wallet Passes",
     "keywords": [
         "chiiya",
         "laravel",
-        "laravel-passes"
+        "passes",
+        "wallet",
+        "apple",
+        "google",
+        "android",
+        "ios"
     ],
     "homepage": "https://github.com/chiiya/laravel-passes",
     "license": "MIT",
@@ -16,22 +21,20 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "spatie/laravel-package-tools": "^1.9.2",
-        "illuminate/contracts": "^9.0"
+        "php": "^8.1",
+        "chiiya/passes": "^0.2.3",
+        "illuminate/contracts": "^9.0",
+        "spatie/laravel-package-tools": "^1.11"
     },
     "require-dev": {
-        "nunomaduro/collision": "^6.0",
-        "orchestra/testbench": "^7.0",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.1",
-        "phpunit/phpunit": "^9.5",
-        "spatie/laravel-ray": "^1.26"
+        "chiiya/code-style-php": "^1.2",
+        "nunomaduro/collision": "^6.1",
+        "orchestra/testbench": "^7.1",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
-            "Chiiya\\LaravelPasses\\": "src",
-            "Chiiya\\LaravelPasses\\Database\\Factories\\": "database/factories"
+            "Chiiya\\LaravelPasses\\": "src"
         }
     },
     "autoload-dev": {
@@ -39,25 +42,18 @@
             "Chiiya\\LaravelPasses\\Tests\\": "tests"
         }
     },
-    "scripts": {
-        "analyse": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage"
-    },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpro/grumphp": true
         }
     },
     "extra": {
         "laravel": {
             "providers": [
                 "Chiiya\\LaravelPasses\\LaravelPassesServiceProvider"
-            ],
-            "aliases": {
-                "LaravelPasses": "Chiiya\\LaravelPasses\\Facades\\LaravelPasses"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",
