@@ -20,31 +20,31 @@ use Chiiya\Passes\Google\ServiceCredentials;
 
 class GoogleDomain
 {
-    protected ?ServiceCredentials $credentials;
+    protected ?ServiceCredentials $credentials = null;
 
-    protected ?EventTicketClassRepository $eventTicketClassRepository;
+    protected ?EventTicketClassRepository $eventTicketClassRepository = null;
 
-    protected ?EventTicketObjectRepository $eventTicketObjectRepository;
+    protected ?EventTicketObjectRepository $eventTicketObjectRepository = null;
 
-    protected ?FlightClassRepository $flightClassRepository;
+    protected ?FlightClassRepository $flightClassRepository = null;
 
-    protected ?FlightObjectRepository $flightObjectRepository;
+    protected ?FlightObjectRepository $flightObjectRepository = null;
 
-    protected ?GiftCardClassRepository $giftCardClassRepository;
+    protected ?GiftCardClassRepository $giftCardClassRepository = null;
 
-    protected ?GiftCardObjectRepository $giftCardObjectRepository;
+    protected ?GiftCardObjectRepository $giftCardObjectRepository = null;
 
-    protected ?LoyaltyClassRepository $loyaltyClassRepository;
+    protected ?LoyaltyClassRepository $loyaltyClassRepository = null;
 
-    protected ?LoyaltyObjectRepository $loyaltyObjectRepository;
+    protected ?LoyaltyObjectRepository $loyaltyObjectRepository = null;
 
-    protected ?OfferClassRepository $offerClassRepository;
+    protected ?OfferClassRepository $offerClassRepository = null;
 
-    protected ?OfferObjectRepository $offerObjectRepository;
+    protected ?OfferObjectRepository $offerObjectRepository = null;
 
-    protected ?TransitClassRepository $transitClassRepository;
+    protected ?TransitClassRepository $transitClassRepository = null;
 
-    protected ?TransitObjectRepository $transitObjectRepository;
+    protected ?TransitObjectRepository $transitObjectRepository = null;
 
     public function __construct(
         protected GoogleClient $client,
