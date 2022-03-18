@@ -21,39 +21,26 @@ use Chiiya\Passes\Google\ServiceCredentials;
 class GoogleDomain
 {
     protected ?ServiceCredentials $credentials = null;
-
     protected ?EventTicketClassRepository $eventTicketClassRepository = null;
-
     protected ?EventTicketObjectRepository $eventTicketObjectRepository = null;
-
     protected ?FlightClassRepository $flightClassRepository = null;
-
     protected ?FlightObjectRepository $flightObjectRepository = null;
-
     protected ?GiftCardClassRepository $giftCardClassRepository = null;
-
     protected ?GiftCardObjectRepository $giftCardObjectRepository = null;
-
     protected ?LoyaltyClassRepository $loyaltyClassRepository = null;
-
     protected ?LoyaltyObjectRepository $loyaltyObjectRepository = null;
-
     protected ?OfferClassRepository $offerClassRepository = null;
-
     protected ?OfferObjectRepository $offerObjectRepository = null;
-
     protected ?TransitClassRepository $transitClassRepository = null;
-
     protected ?TransitObjectRepository $transitObjectRepository = null;
 
     public function __construct(
         protected GoogleClient $client,
-    ) {
-    }
+    ) {}
 
     public function eventTicketClasses(): EventTicketClassRepository
     {
-        if (! $this->eventTicketClassRepository) {
+        if ($this->eventTicketClassRepository === null) {
             $this->eventTicketClassRepository = new EventTicketClassRepository($this->client);
         }
 
@@ -62,7 +49,7 @@ class GoogleDomain
 
     public function eventTicketObjects(): EventTicketObjectRepository
     {
-        if (! $this->eventTicketObjectRepository) {
+        if ($this->eventTicketObjectRepository === null) {
             $this->eventTicketObjectRepository = new EventTicketObjectRepository($this->client);
         }
 
@@ -71,7 +58,7 @@ class GoogleDomain
 
     public function flightClasses(): FlightClassRepository
     {
-        if (! $this->flightClassRepository) {
+        if ($this->flightClassRepository === null) {
             $this->flightClassRepository = new FlightClassRepository($this->client);
         }
 
@@ -80,7 +67,7 @@ class GoogleDomain
 
     public function flightObjects(): FlightObjectRepository
     {
-        if (! $this->flightObjectRepository) {
+        if ($this->flightObjectRepository === null) {
             $this->flightObjectRepository = new FlightObjectRepository($this->client);
         }
 
@@ -89,7 +76,7 @@ class GoogleDomain
 
     public function giftCardClasses(): GiftCardClassRepository
     {
-        if (! $this->giftCardClassRepository) {
+        if ($this->giftCardClassRepository === null) {
             $this->giftCardClassRepository = new GiftCardClassRepository($this->client);
         }
 
@@ -98,7 +85,7 @@ class GoogleDomain
 
     public function giftCardObjects(): GiftCardObjectRepository
     {
-        if (! $this->giftCardObjectRepository) {
+        if ($this->giftCardObjectRepository === null) {
             $this->giftCardObjectRepository = new GiftCardObjectRepository($this->client);
         }
 
@@ -107,7 +94,7 @@ class GoogleDomain
 
     public function loyaltyClasses(): LoyaltyClassRepository
     {
-        if (! $this->loyaltyClassRepository) {
+        if ($this->loyaltyClassRepository === null) {
             $this->loyaltyClassRepository = new LoyaltyClassRepository($this->client);
         }
 
@@ -116,7 +103,7 @@ class GoogleDomain
 
     public function loyaltyObjects(): LoyaltyObjectRepository
     {
-        if (! $this->loyaltyObjectRepository) {
+        if ($this->loyaltyObjectRepository === null) {
             $this->loyaltyObjectRepository = new LoyaltyObjectRepository($this->client);
         }
 
@@ -125,7 +112,7 @@ class GoogleDomain
 
     public function offerClasses(): OfferClassRepository
     {
-        if (! $this->offerClassRepository) {
+        if ($this->offerClassRepository === null) {
             $this->offerClassRepository = new OfferClassRepository($this->client);
         }
 
@@ -134,7 +121,7 @@ class GoogleDomain
 
     public function offerObjects(): OfferObjectRepository
     {
-        if (! $this->offerObjectRepository) {
+        if ($this->offerObjectRepository === null) {
             $this->offerObjectRepository = new OfferObjectRepository($this->client);
         }
 
@@ -143,7 +130,7 @@ class GoogleDomain
 
     public function transitClasses(): TransitClassRepository
     {
-        if (! $this->transitClassRepository) {
+        if ($this->transitClassRepository === null) {
             $this->transitClassRepository = new TransitClassRepository($this->client);
         }
 
@@ -152,7 +139,7 @@ class GoogleDomain
 
     public function transitObjects(): TransitObjectRepository
     {
-        if (! $this->transitObjectRepository) {
+        if ($this->transitObjectRepository === null) {
             $this->transitObjectRepository = new TransitObjectRepository($this->client);
         }
 
@@ -164,7 +151,7 @@ class GoogleDomain
      */
     public function createJWT(array $payload = []): JWT
     {
-        if (! $this->credentials) {
+        if ($this->credentials === null) {
             $this->credentials = ServiceCredentials::parse(config('passes.google.credentials'));
         }
 

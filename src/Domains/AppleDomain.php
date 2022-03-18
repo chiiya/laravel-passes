@@ -10,9 +10,8 @@ use Illuminate\Support\Str;
 class AppleDomain
 {
     public function __construct(
-        protected PassFactory $factory
-    ) {
-    }
+        protected PassFactory $factory,
+    ) {}
 
     /**
      * Determine if the given pass file already exists in storage.
@@ -49,7 +48,7 @@ class AppleDomain
         $file = $this->factory->create($pass, basename($path, PassFactory::PASS_EXTENSION));
 
         // Move file to storage disk
-        $handle = fopen($file->getRealPath(), 'rb');
+        $handle = fopen($file->getRealPath(), 'r');
         Storage::disk(config('passes.apple.disk'))->writeStream($path, $handle);
         fclose($handle);
         unlink($file->getRealPath());

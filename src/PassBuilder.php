@@ -10,8 +10,7 @@ class PassBuilder
     public function __construct(
         protected AppleDomain $apple,
         protected GoogleDomain $google,
-    ) {
-    }
+    ) {}
 
     public function apple(): AppleDomain
     {

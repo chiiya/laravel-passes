@@ -5,7 +5,6 @@ namespace Chiiya\LaravelPasses\Google;
 use Chiiya\Passes\Google\Http\ClientInterface;
 use Chiiya\Passes\Google\Http\GoogleAuthMiddleware;
 use Chiiya\Passes\Google\ServiceCredentials;
-use function config;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 use JsonSerializable;
@@ -38,7 +37,7 @@ class GoogleClient implements ClientInterface
         ]);
 
         if (! Http::isFaking()) {
-            $credentials = ServiceCredentials::parse(config('passes.google.credentials'));
+            $credentials = ServiceCredentials::parse(\config('passes.google.credentials'));
             $client->withMiddleware(GoogleAuthMiddleware::createAuthTokenMiddleware($credentials));
         }
 
