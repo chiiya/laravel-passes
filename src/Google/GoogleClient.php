@@ -39,6 +39,9 @@ class GoogleClient implements ClientInterface
         if (! Http::isFaking()) {
             $credentials = ServiceCredentials::parse(config('passes.google.credentials'));
             $client->withMiddleware(GoogleAuthMiddleware::createAuthTokenMiddleware($credentials));
+            $client->withOptions([
+                'auth' => 'google_auth',
+            ]);
         }
 
         return $client;
