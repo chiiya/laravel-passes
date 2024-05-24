@@ -34,6 +34,7 @@ class GoogleDomain
     protected ?OfferObjectRepository $offerObjectRepository = null;
     protected ?TransitClassRepository $transitClassRepository = null;
     protected ?TransitObjectRepository $transitObjectRepository = null;
+    protected ?GenericClassRepository $genericClassRepository = null;
 
     public function __construct(
         protected GoogleClient $client,
