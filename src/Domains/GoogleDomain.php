@@ -16,6 +16,7 @@ use Chiiya\Passes\Google\Repositories\OfferClassRepository;
 use Chiiya\Passes\Google\Repositories\OfferObjectRepository;
 use Chiiya\Passes\Google\Repositories\TransitClassRepository;
 use Chiiya\Passes\Google\Repositories\TransitObjectRepository;
+use Chiiya\Passes\Google\Repositories\GenericClassRepository;
 use Chiiya\Passes\Google\ServiceCredentials;
 
 class GoogleDomain
@@ -144,6 +145,15 @@ class GoogleDomain
         }
 
         return $this->transitObjectRepository;
+    }
+
+    public function genericClasses(): GenericClassRepository
+    {
+        if ($this->genericClassRepository === null) {
+            $this->genericClassRepository = new GenericClassRepository($this->client);
+        }
+
+        return $this->genericClassRepository;
     }
 
     /**
