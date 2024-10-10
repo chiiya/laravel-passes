@@ -40,7 +40,7 @@ class GoogleDomain
 
     public function eventTicketClasses(): EventTicketClassRepository
     {
-        if ($this->eventTicketClassRepository === null) {
+        if (! $this->eventTicketClassRepository instanceof EventTicketClassRepository) {
             $this->eventTicketClassRepository = new EventTicketClassRepository($this->client);
         }
 
@@ -49,7 +49,7 @@ class GoogleDomain
 
     public function eventTicketObjects(): EventTicketObjectRepository
     {
-        if ($this->eventTicketObjectRepository === null) {
+        if (! $this->eventTicketObjectRepository instanceof EventTicketObjectRepository) {
             $this->eventTicketObjectRepository = new EventTicketObjectRepository($this->client);
         }
 
@@ -58,7 +58,7 @@ class GoogleDomain
 
     public function flightClasses(): FlightClassRepository
     {
-        if ($this->flightClassRepository === null) {
+        if (! $this->flightClassRepository instanceof FlightClassRepository) {
             $this->flightClassRepository = new FlightClassRepository($this->client);
         }
 
@@ -67,7 +67,7 @@ class GoogleDomain
 
     public function flightObjects(): FlightObjectRepository
     {
-        if ($this->flightObjectRepository === null) {
+        if (! $this->flightObjectRepository instanceof FlightObjectRepository) {
             $this->flightObjectRepository = new FlightObjectRepository($this->client);
         }
 
@@ -76,7 +76,7 @@ class GoogleDomain
 
     public function giftCardClasses(): GiftCardClassRepository
     {
-        if ($this->giftCardClassRepository === null) {
+        if (! $this->giftCardClassRepository instanceof GiftCardClassRepository) {
             $this->giftCardClassRepository = new GiftCardClassRepository($this->client);
         }
 
@@ -85,7 +85,7 @@ class GoogleDomain
 
     public function giftCardObjects(): GiftCardObjectRepository
     {
-        if ($this->giftCardObjectRepository === null) {
+        if (! $this->giftCardObjectRepository instanceof GiftCardObjectRepository) {
             $this->giftCardObjectRepository = new GiftCardObjectRepository($this->client);
         }
 
@@ -94,7 +94,7 @@ class GoogleDomain
 
     public function loyaltyClasses(): LoyaltyClassRepository
     {
-        if ($this->loyaltyClassRepository === null) {
+        if (! $this->loyaltyClassRepository instanceof LoyaltyClassRepository) {
             $this->loyaltyClassRepository = new LoyaltyClassRepository($this->client);
         }
 
@@ -103,7 +103,7 @@ class GoogleDomain
 
     public function loyaltyObjects(): LoyaltyObjectRepository
     {
-        if ($this->loyaltyObjectRepository === null) {
+        if (! $this->loyaltyObjectRepository instanceof LoyaltyObjectRepository) {
             $this->loyaltyObjectRepository = new LoyaltyObjectRepository($this->client);
         }
 
@@ -112,7 +112,7 @@ class GoogleDomain
 
     public function offerClasses(): OfferClassRepository
     {
-        if ($this->offerClassRepository === null) {
+        if (! $this->offerClassRepository instanceof OfferClassRepository) {
             $this->offerClassRepository = new OfferClassRepository($this->client);
         }
 
@@ -121,7 +121,7 @@ class GoogleDomain
 
     public function offerObjects(): OfferObjectRepository
     {
-        if ($this->offerObjectRepository === null) {
+        if (! $this->offerObjectRepository instanceof OfferObjectRepository) {
             $this->offerObjectRepository = new OfferObjectRepository($this->client);
         }
 
@@ -130,7 +130,7 @@ class GoogleDomain
 
     public function transitClasses(): TransitClassRepository
     {
-        if ($this->transitClassRepository === null) {
+        if (! $this->transitClassRepository instanceof TransitClassRepository) {
             $this->transitClassRepository = new TransitClassRepository($this->client);
         }
 
@@ -139,7 +139,7 @@ class GoogleDomain
 
     public function transitObjects(): TransitObjectRepository
     {
-        if ($this->transitObjectRepository === null) {
+        if (! $this->transitObjectRepository instanceof TransitObjectRepository) {
             $this->transitObjectRepository = new TransitObjectRepository($this->client);
         }
 
@@ -151,15 +151,15 @@ class GoogleDomain
      */
     public function createJWT(array $payload = []): JWT
     {
-        if ($this->credentials === null) {
+        if (! $this->credentials instanceof ServiceCredentials) {
             $this->credentials = ServiceCredentials::parse(config('passes.google.credentials'));
         }
 
-        return new JWT([
-            'iss' => $this->credentials->client_email,
-            'key' => $this->credentials->private_key,
-            'origins' => config('passes.google.origins'),
-            'payload' => $payload,
-        ]);
+        return new JWT(
+            iss: $this->credentials->client_email,
+            key: $this->credentials->private_key,
+            origins: config('passes.google.origins'),
+            payload: $payload,
+        );
     }
 }
