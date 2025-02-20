@@ -35,8 +35,8 @@ return [
         |--------------------------------------------------------------------------
         | Storage Disk
         |--------------------------------------------------------------------------
-        | Password for the .p12 Apple pass type certificate.
-        | See https://github.com/chiiya/passes/documentation/requirements.md
+        | Disk where the generated .pkpass file for Apple Wallet is stored. You may
+        | use any disk configured under filesystems.disks in your Laravel config.
         */
         'disk' => env('MEDIA_DISK', 'public'),
 
