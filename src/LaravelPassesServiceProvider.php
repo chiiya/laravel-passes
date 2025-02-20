@@ -21,15 +21,13 @@ class LaravelPassesServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->app->bind(ClientInterface::class, GoogleClient::class);
-        $this->app->bind(PassFactory::class, function () {
-            return new PassFactory([
-                'temp_dir' => config('passes.apple.temp_dir'),
-                'output' => config('passes.apple.temp_dir'),
-                'certificate' => config('passes.apple.certificate'),
-                'password' => config('passes.apple.password'),
-                'wwdr' => config('passes.apple.wwdr'),
-            ]);
-        });
+        $this->app->bind(PassFactory::class, fn () => new PassFactory([
+            'temp_dir' => config('passes.apple.temp_dir'),
+            'output' => config('passes.apple.temp_dir'),
+            'certificate' => config('passes.apple.certificate'),
+            'password' => config('passes.apple.password'),
+            'wwdr' => config('passes.apple.wwdr'),
+        ]));
     }
 
     public function bootingPackage(): void
