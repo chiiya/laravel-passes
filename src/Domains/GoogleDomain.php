@@ -8,6 +8,8 @@ use Chiiya\Passes\Google\Repositories\EventTicketClassRepository;
 use Chiiya\Passes\Google\Repositories\EventTicketObjectRepository;
 use Chiiya\Passes\Google\Repositories\FlightClassRepository;
 use Chiiya\Passes\Google\Repositories\FlightObjectRepository;
+use Chiiya\Passes\Google\Repositories\GenericClassRepository;
+use Chiiya\Passes\Google\Repositories\GenericObjectRepository;
 use Chiiya\Passes\Google\Repositories\GiftCardClassRepository;
 use Chiiya\Passes\Google\Repositories\GiftCardObjectRepository;
 use Chiiya\Passes\Google\Repositories\LoyaltyClassRepository;
@@ -25,6 +27,8 @@ class GoogleDomain
     protected ?EventTicketObjectRepository $eventTicketObjectRepository = null;
     protected ?FlightClassRepository $flightClassRepository = null;
     protected ?FlightObjectRepository $flightObjectRepository = null;
+    protected ?GenericClassRepository $genericClassRepository = null;
+    protected ?GenericObjectRepository $genericObjectRepository = null;
     protected ?GiftCardClassRepository $giftCardClassRepository = null;
     protected ?GiftCardObjectRepository $giftCardObjectRepository = null;
     protected ?LoyaltyClassRepository $loyaltyClassRepository = null;
@@ -72,6 +76,24 @@ class GoogleDomain
         }
 
         return $this->flightObjectRepository;
+    }
+
+    public function genericClasses(): GenericClassRepository
+    {
+        if (! $this->genericClassRepository instanceof GenericClassRepository) {
+            $this->genericClassRepository = new GenericClassRepository($this->client);
+        }
+
+        return $this->genericClassRepository;
+    }
+
+    public function genericObjects(): GenericObjectRepository
+    {
+        if (! $this->genericObjectRepository instanceof GenericObjectRepository) {
+            $this->genericObjectRepository = new GenericObjectRepository($this->client);
+        }
+
+        return $this->genericObjectRepository;
     }
 
     public function giftCardClasses(): GiftCardClassRepository
