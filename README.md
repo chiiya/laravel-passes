@@ -1,7 +1,7 @@
 # Laravel Passes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/chiiya/laravel-passes.svg?style=flat-square)](https://packagist.org/packages/chiiya/laravel-passes)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/chiiya/laravel-passes/lint?label=code%20style)](https://github.com/chiiya/laravel-passes/actions?query=workflow%3Alint+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/chiiya/laravel-passes/lint.yml?branch=master)](https://github.com/chiiya/laravel-passes/actions?query=workflow%3Alint+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/chiiya/laravel-passes.svg?style=flat-square)](https://packagist.org/packages/chiiya/laravel-passes)
 
 Laravel package for creating iOS and Android Wallet Passes.
